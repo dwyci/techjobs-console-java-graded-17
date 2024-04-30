@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
+
 /**
  * Created by LaunchCode
  */
@@ -120,6 +122,24 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.isEmpty()){
+            System.out.println("\n No Results");
+            return;
+        }
+        for (HashMap<String, String> job: someJobs) {
+            System.out.println("*****");
+
+            for (Map.Entry<String,String> entry: job.entrySet()){
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+
+            System.out.println("*****\n");
+            
+        }
+
+
+        //skill, employer, location, position type
+        //think instead about creating a nested loop to loop over each HashMap.
+        //System.out.println("printJobs is not implemented yet");
     }
 }
