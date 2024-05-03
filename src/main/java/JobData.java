@@ -72,7 +72,9 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
+
+                //(columnValue != null && columnValue.toLowerCase().contains(value.toLowerCase(
                 jobs.add(row);
             }
         }
@@ -92,6 +94,8 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String,String>> jobs = new ArrayList<>();
+
+        String searchValue = value.toLowerCase();
 
         for (HashMap<String, String> row : allJobs){
             boolean found = false;  //this will track if the value is found in any column

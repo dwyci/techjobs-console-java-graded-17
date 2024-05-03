@@ -64,16 +64,30 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    printJobs(JobData.findByValue(searchTerm));
+                    ArrayList<HashMap<String, String>> searchResults = JobData.findByValue(searchTerm);
+                    if (searchResults.isEmpty()) {
+                        System.out.print("No Results");
+                        // printJobs(JobData.findByValue(searchTerm));
+                    } else {
+                        printJobs(searchResults);
+                    }
                 } else {
-                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    ArrayList<HashMap<String, String>> searchResults = JobData.findByColumnAndValue(searchField, searchTerm);
+                    if (searchResults.isEmpty()) {
+                        System.out.print("No Results");
+                    } else {
+                        printJobs(searchResults);
+                    }
                 }
+                continue;
             }
-        }
-    }
 
+
+
+
+        }}
     // ﻿Returns the key of the selected item from the choices Dictionary
-    private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
+    private static String getUserSelection (String menuHeader, HashMap < String, String > choices){
 
         int choiceIdx = -1;
         Boolean validChoice = false;
@@ -114,27 +128,27 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
 
     // Print a list of jobs
-    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+    private static void printJobs (ArrayList < HashMap < String, String >> someJobs){
 
-        if (someJobs.isEmpty()){
-            System.out.println("\n No Results");
+        if (someJobs.isEmpty()) {
+            System.out.print("No Results");
             return;
         }
-        for (HashMap<String, String> job: someJobs) {
-            System.out.println("*****");
+        for (HashMap<String, String> job : someJobs) {
+            System.out.println("\n*****");
 
-            for (Map.Entry<String,String> entry: job.entrySet()){
+            for (Map.Entry<String, String> entry : job.entrySet()) {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
             }
 
-            System.out.println("*****\n");
-            
+            System.out.println("*****");
+
         }
 
 
@@ -142,4 +156,5 @@ public class TechJobs {
         //think instead about creating a nested loop to loop over each HashMap.
         //System.out.println("printJobs is not implemented yet");
     }
+
 }
